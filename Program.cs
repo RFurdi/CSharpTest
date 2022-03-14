@@ -76,9 +76,14 @@ namespace CSharpTest
                 }
                 else if (upisaniTekst == "5")
                 {
-                    //Promjena godine proizvodnje automobila.
-                    Console.WriteLine("Promjena godine proizvodnje");
-                    automobil.godinaProizvodnje = Convert.ToInt32(Console.ReadLine());
+                    string godinaautomobila = null;
+                    while (godinaautomobila == null || !godinaautomobila.All(char.IsNumber))
+                    {
+                        Console.WriteLine("Promjena godine proizvodnje automobila:");
+                        godinaautomobila = Console.ReadLine();
+
+                    }
+                    automobil.godinaProizvodnje = int.Parse(godinaautomobila);
                 }
                 else if (upisaniTekst == "6")
                 {
