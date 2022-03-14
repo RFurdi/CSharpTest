@@ -6,79 +6,92 @@ using System.Threading.Tasks;
 
 namespace CSharpTest
 {
-    internal class Program 
+    internal class Program
     {
         static void Main(string[] args)
         {
-        
-                bool menu = true;
-                string odabir;
 
-                Automobil automobil = new Automobil();
+            string upisaniTekst = "";
+            bool pocetnitekst = true;
 
-                while (menu)
+            Automobil automobil = new Automobil();
+
+            while (pocetnitekst)
+            {
+                Console.WriteLine("1. Unos automobila." +
+                "\n2. Ispis unesenos automobila." +
+                "\n3. Starost automobila." +
+                "\n4. Ukupna cijena automobila." +
+                "\n5. Promjena godine proizvodnje automobila." +
+                "\n6. Exit");
+                upisaniTekst = Console.ReadLine();
+
+                if (upisaniTekst == "1")
                 {
-                    Console.WriteLine(
-                        "1. Unos automobila." +
-                        "\n2. Ispis unesenos automobila." +
-                        "\n3. Starost automobila." +
-                        "\n4. Ukupna cijena automobila." +
-                        "\n5. Promjena godine proizvodnje automobila." +
-                        "\n6. Exit");
-                    odabir = Console.ReadLine();
+                    string nazivautomobila = null;
+                    string godinaautomobila = null;
+                    string cijenaautomobila = null;
 
-                    if (odabir == "1")
+                    while (nazivautomobila == null || !nazivautomobila.All(char.IsLetter))
                     {
-                        //Unos automobila.
                         Console.WriteLine("Naziv automobila:");
-                        automobil.naziv = Console.ReadLine();
+                        nazivautomobila = Console.ReadLine();
 
-                        //Unos godine proizvodnje automobila.
+                    }
+                    automobil.naziv = nazivautomobila;
+                    while (godinaautomobila == null || !godinaautomobila.All(char.IsNumber))
+                    {
                         Console.WriteLine("Godina proizvodnje automobila:");
-                        automobil.godinaProizvodnje = Convert.ToInt32(Console.ReadLine());
+                        godinaautomobila = Console.ReadLine();
 
-                        //Unos Osnovne cijene automobila.
-                        Console.WriteLine("Osnovna cijena automobila je:");
-                        automobil.osnovnaCijena = Convert.ToInt32(Console.ReadLine());
+                    }
+                    automobil.godinaProizvodnje = int.Parse(godinaautomobila);
+                    while (cijenaautomobila == null || !cijenaautomobila.All(char.IsNumber))
+                    {
+                        Console.WriteLine("Osnovna cijena automobila:");
+                        cijenaautomobila = Console.ReadLine();
 
-                        Console.WriteLine("Automobil uspjesno unesen!");
                     }
-
-                    else if (odabir == "2")
-                    {
-                        //Ispis unesenog automobila.
-                        string uneseniAutomobil = $"Naziv automobila:{automobil.naziv}." +
-                            $"\nGodina proizvodnje automobila:{automobil.godinaProizvodnje}." +
-                            $"\nOsnovna cijena automobila:{automobil.osnovnaCijena}.";
-                        Console.WriteLine(uneseniAutomobil);
-                    }
-                    else if (odabir == "3")
-                    {
-                        //Ispis starosti automobila.
-                        string starostAutomobila = $"Automobil je star:{automobil.IzracunajStarost()} godina.";
-                        Console.WriteLine(starostAutomobila);
-                    }
-                    else if (odabir == "4")
-                    {
-                        //Ispis ukupne cijene automobila.
-                        string ukupnaCijena = $"Ukuna cijena automobila je:{automobil.UkupnaCijena()}.";
-                        Console.WriteLine(ukupnaCijena);
-                    }
-                    else if (odabir == "5")
-                    {
-                        //Promjena godine proizvodnje automobila.
-                        Console.WriteLine("Promjena godine proizvodnje");
-                        automobil.godinaProizvodnje = Convert.ToInt32(Console.ReadLine());
-                    }
-                    else if (odabir == "6")
-                    {
-                        //Izlaz iz programa.
-                        Environment.Exit(0);
-                    }
+                    automobil.osnovnaCijena = double.Parse(cijenaautomobila);
                 }
-        }
+                else if (upisaniTekst == "2")
+                {
+                    //Ispis unesenog automobila.
+                    string uneseniAutomobil = $"Naziv automobila:{automobil.naziv}." +
+                        $"\nGodina proizvodnje automobila:{automobil.godinaProizvodnje}." +
+                        $"\nOsnovna cijena automobila:{automobil.osnovnaCijena}.";
+                    Console.WriteLine(uneseniAutomobil);
+                }
+                else if (upisaniTekst == "3")
+                {
+                    //Ispis starosti automobila.
+                    string starostAutomobila = $"Automobil je star:{automobil.IzracunajStarost()} godina.";
+                    Console.WriteLine(starostAutomobila);
+                }
+                else if (upisaniTekst == "4")
+                {
+                    //Ispis ukupne cijene automobila.
+                    string ukupnaCijena = $"Ukuna cijena automobila je:{automobil.UkupnaCijena()}.";
+                    Console.WriteLine(ukupnaCijena);
+                }
+                else if (upisaniTekst == "5")
+                {
+                    //Promjena godine proizvodnje automobila.
+                    Console.WriteLine("Promjena godine proizvodnje");
+                    automobil.godinaProizvodnje = Convert.ToInt32(Console.ReadLine());
+                }
+                else if (upisaniTekst == "6")
+                {
+                    //Izlaz iz programa.
+                    Environment.Exit(0);
+                }
+            }
 
+        }
     }
 }
-    
+
+
+
+
 
